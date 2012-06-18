@@ -1,0 +1,6 @@
+Tests for:
+
+Node
+	- Positioning
+	- Visibility
+	- Z position handling
