@@ -17,18 +17,18 @@ import com.google.gwt.resources.client.ImageResource;
  */
 public class Kinetic implements EntryPoint {
 	
-	/** The ID of a DIV element in the HTML source which will hold the Kinetic {@link Stage} object. */
+	/** The ID of an element in the HTML source which will hold the Kinetic {@link Stage} object. */
 	public static String stageId = "stage";
 	
 	/** Default stroke width (1 pixel) */
 	public static double defaultStrokeWidth = 1.0;
 	/** Default fill colour (white) */
-	public static String defaultFillColour = ColourPalette.white.opaque().toString();
+	public static String defaultFillColour = Colour.white.toString();
 	/** Default stroke colour (black) */
-	public static String defaultStrokeColour = ColourPalette.black.opaque().toString();
+	public static String defaultStrokeColour = Colour.black.toString();
 	
 	/** Default fill colour for text (black) */
-	public static String defaultTextFillColour = ColourPalette.black.opaque().toString();
+	public static String defaultTextFillColour = Colour.black.toString();
 	
 	/** Default line cap style (ROUND) */
 	public static String defaultLineCap = LineCap.ROUND.toString();
@@ -40,8 +40,7 @@ public class Kinetic implements EntryPoint {
 	/** Default font size (14) */
 	public static int defaultFontSize = 12;
 	/** Default font style (normal) */
-	public static String defaultFontStyle = Text.FontStyle.NORMAL.toString();
-	
+	public static String defaultFontStyle = Text.FontStyle.NORMAL.toString(); 
 	/** Default dragability == Is a node dragable? (true) */ 
 	public static boolean defaultDragability = true;
 
@@ -88,9 +87,9 @@ public class Kinetic implements EntryPoint {
 	 * @param position The initial position
 	 * @param r The radius of the circle
 	 * @return The circle shape
-	 * @see Circle
+	 * @see Ellipse
 	 */
-	public static native Circle createCircle(Vector2d position, double r) /*-{
+	public static native Ellipse createCircle(Vector2d position, double r) /*-{
 	    return new $wnd.Kinetic.Circle({
           x: position.@net.edzard.kinetic.Vector2d::x,
           y: position.@net.edzard.kinetic.Vector2d::y,
@@ -102,6 +101,28 @@ public class Kinetic implements EntryPoint {
           draggable: @net.edzard.kinetic.Kinetic::defaultDragability
         });
 	}-*/;
+	
+	/**
+	 * Create an ellipse shape.
+	 * @param position The initial position
+	 * @param radii The radii of the elipse (x and y component)
+	 * @return The ellipse shape
+	 * @see Ellipse
+	 */
+	public static native Ellipse createEllipse(Vector2d position, Vector2d radii) /*-{
+	    return new $wnd.Kinetic.Circle({
+          x: position.@net.edzard.kinetic.Vector2d::x,
+          y: position.@net.edzard.kinetic.Vector2d::y,
+          //radius: [radii.@net.edzard.kinetic.Vector2d::x, radii.@net.edzard.kinetic.Vector2d::y],
+          radius: {x: radii.@net.edzard.kinetic.Vector2d::x, y: radii.@net.edzard.kinetic.Vector2d::y},
+		  fill: @net.edzard.kinetic.Kinetic::defaultFillColour,
+          stroke: @net.edzard.kinetic.Kinetic::defaultStrokeColour,
+          strokeWidth: @net.edzard.kinetic.Kinetic::defaultStrokeWidth,
+          lineJoin: @net.edzard.kinetic.Kinetic::defaultLineJoin,
+          draggable: @net.edzard.kinetic.Kinetic::defaultDragability
+        });
+	}-*/;
+	
 	
 	/**
 	 * Create a rectangle shape.
@@ -252,6 +273,29 @@ public class Kinetic implements EntryPoint {
 	}-*/;
 
 	/**
+	 * Create a text shape that follows a SVG path.
+	 * A SVG path string is made up from path commands (see <a href="http://www.w3.org/TR/SVG/paths.html">W3C SVG 1.1 TR</a>).
+	 * @param position The initial position
+	 * @param aText The text
+	 * @param d The SVG path string
+	 * @return A text path shape
+	 * @see PathSVG
+	 */
+	public static native TextPath createTextPath(Vector2d position, String aText, String d) /*-{
+	    return new $wnd.Kinetic.TextPath({
+	      x: position.@net.edzard.kinetic.Vector2d::x,
+	      y: position.@net.edzard.kinetic.Vector2d::y,
+	      text: aText,
+	      textFill: @net.edzard.kinetic.Kinetic::defaultTextFillColour,
+		  fontStyle: @net.edzard.kinetic.Kinetic::defaultFontStyle,
+		  fontSize: @net.edzard.kinetic.Kinetic::defaultFontSize,
+		  fontFamily: @net.edzard.kinetic.Kinetic::defaultFontFamily,
+	      data: d,
+	      draggable: @net.edzard.kinetic.Kinetic::defaultDragability
+	    });
+	}-*/;
+	
+	/**
 	 * Create a line shape.
 	 * The line will consist of only two points.
 	 * Use {@link Line#setPoints(List)} to set more than two.
@@ -262,8 +306,8 @@ public class Kinetic implements EntryPoint {
 	 */
 	public static native Line createLine(Vector2d start, Vector2d end) /*-{
 		return new $wnd.Kinetic.Line({
-			points: [{x: start.@net.edzard.kinetic.Vector2d::x, y: start.@net.edzard.kinetic.Vector2d::y}, 
-					 {x: end.@net.edzard.kinetic.Vector2d::x, y: end.@net.edzard.kinetic.Vector2d::y}],
+			points: [start.@net.edzard.kinetic.Vector2d::x, start.@net.edzard.kinetic.Vector2d::y, 
+					 end.@net.edzard.kinetic.Vector2d::x, end.@net.edzard.kinetic.Vector2d::y],
           	stroke:  @net.edzard.kinetic.Kinetic::defaultStrokeColour,
           	strokeWidth: @net.edzard.kinetic.Kinetic::defaultStrokeWidth,
           	lineCap: @net.edzard.kinetic.Kinetic::defaultLineCap,
@@ -409,11 +453,11 @@ public class Kinetic implements EntryPoint {
 	      stroke: @net.edzard.kinetic.Kinetic::defaultStrokeColour,
 	      strokeWidth: @net.edzard.kinetic.Kinetic::defaultStrokeWidth,
 	      lineJoin: @net.edzard.kinetic.Kinetic::defaultLineJoin,
-	      drawFunc: function() {
+	      drawFunc: function(context) {
 	      	if (this.path != null) {
 	      		
 	      		// Prepare context
-	      		var context = this.getContext();
+	      		//var context = this.getContext();
 	      		
 	      		// Iterate over commands
 		      	var it = this.path.@net.edzard.kinetic.Path::getCommands()().@java.util.List::iterator()();
@@ -508,8 +552,8 @@ public class Kinetic implements EntryPoint {
 				}
 				
 				// Stroke and fill
-				if (this.getFill() != null) this.fill();
-				if (this.getStroke() != null) this.stroke();
+				if (this.getFill() != null) this.fill(context);
+				if (this.getStroke() != null) this.stroke(context);
 	      	}
 	      },
 	      draggable: @net.edzard.kinetic.Kinetic::defaultDragability

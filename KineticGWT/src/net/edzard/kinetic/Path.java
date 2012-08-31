@@ -125,10 +125,18 @@ public class Path {
 		public void setPosition(Vector2d pos) {
 			this.pos = pos;
 		}
+
+		/* (non-Javadoc)
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return "LineTo" + pos;
+		}
 	}
 	
 	/**
-	 * Command for adding the given point to the current subpath and connecting to the previous one by a quadratic Bézier curve with one given control point.
+	 * Command for adding the given point to the current subpath and connecting to the previous one by a quadratic Bezier curve with one given control point.
 	 * @author Ed
 	 */
 	public class QuadraticCurveCommand extends Command {
@@ -184,7 +192,7 @@ public class Path {
 	}
 	
 	/**
-	 * Command for adding the given point to the current subpath and connecting to the previous one by a cubic Bézier curve with two given control points.
+	 * Command for adding the given point to the current subpath and connecting to the previous one by a cubic Bezier curve with two given control points.
 	 * @author Ed
 	 */
 	public class BezierCurveCommand extends Command {
@@ -548,9 +556,9 @@ public class Path {
 	}
 	
 	/**
-	 * Adding the given position to the current path and connects it to the previous one by a quadratic Bézier curve with one given control point.
+	 * Adding the given position to the current path and connects it to the previous one by a quadratic Bezier curve with one given control point.
 	 * @param pos The new position to add to the path
-	 * @param cp The single control point for the bèzier curve
+	 * @param cp The single control point for the bezier curve
 	 * @return this (for command chaining)
 	 */
 	public Path quadraticCurveTo(Vector2d pos, Vector2d cp) {
@@ -559,7 +567,7 @@ public class Path {
 	}
 	
 	/**
-	 * Adding the given position to the current path and connects it to the previous one by a quadratic Bézier curve with two given control point.
+	 * Adding the given position to the current path and connects it to the previous one by a quadratic Bezier curve with two given control point.
 	 * @param pos The new position to add to the path
 	 * @param cp1 The first control point
 	 * @param cp2 The second control point

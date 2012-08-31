@@ -1,65 +1,34 @@
 package net.edzard.kinetic;
 
+import net.edzard.kinetic.Text.FontStyle;
+
 /**
- * A text shape.
- * Used for writing text. Text formatting options are limited.
- * There does not seem to be a wrap-around option for text boxes.
+ * A text path shape.
+ * Used for writing text along a SVG path. 
  * @author Ed
  */
 // TODO: Use same strategy for doing all of the enumeration literal conversions...
 // TODO: test the alignment values (are they properly converted to lowercase / uppercase?
-public class Text extends Shape {
-
-	/**
-	 * Font style for a text.
-	 * @author Ed
-	 */
-	public enum FontStyle {
+public class TextPath extends Shape {
 		
-		/** Normal styling - not bold and not italic */
-		NORMAL,
-		/** Bold font */
-		BOLD,
-		/** Italic Font */
-		ITALIC;
-		
-		/**
-		 * Retrieve a kineticjs compatible string of the enumeration literal.
-		 * @return The literal string
-		 */
-		public String toString() {
-			return super.toString().toLowerCase();
-		}
-	}
-	
-	/**
-	 * Horizontal alignment options for text.
-	 * @author Ed
-	 */
-	public enum HorizontalAlignment {
-		/** Align text on the left side */
-		LEFT,
-		/** Align text in the center */
-		CENTER,
-		/** Align text on the right side */
-		RIGHT
-	}
-	
-	/**
-	 * Vertical alignment options for text. 
-	 * @author Ed
-	 */
-	public enum VerticalAlignment {
-		/** Align text on the top side */
-		TOP,
-		/** Align text in the middle */
-		MIDDLE,
-		/** Align text on the bottom side */
-		BOTTOM
-	}
-	
 	/** Protected default Ctor keeps GWT happy */
-	protected Text() {}
+	protected TextPath() {}
+	
+	/**
+	 * Retrieve the SVG Path string.
+	 * @return The path string
+	 */
+	public final native String getData() /*-{
+		return this.getData();
+	}-*/;
+	
+	/**
+	 * Assign a SVG path string.
+	 * @param data The new path string
+	 */
+	public final native void setData(String data) /*-{
+		this.setData(data);
+	}-*/;
 	
 	/**
 	 * Retrieve the text string to display by this shape.
@@ -182,73 +151,6 @@ public class Text extends Shape {
 	}-*/;
 	
 	/**
-	 * Retrieve the horizontal alignment for this text shape.
-	 * @return The horizontal alignment
-	 */
-	public final native HorizontalAlignment getHorizontalAlignment() /*-{
-		if (this.getAlign() != null) return @net.edzard.kinetic.Text.HorizontalAlignment::valueOf(Ljava/lang/String;)(this.getAlign().toUpperCase());
-		else return null;
-	}-*/;
-	
-	/**
-	 * Assign a horizontal alignment to the text shape.
-	 * @param align A horizontal alignment
-	 */
-	public final native void setHorizontalAlignment(HorizontalAlignment align) /*-{
-		this.setAlign(align.@net.edzard.kinetic.Text.HorizontalAlignment::toString()().toLowerCase());
-	}-*/;
-	
-	/**
-	 * Retrieve the vertical alignment for this text shape.
-	 * @return The vertical alignment
-	 */
-	public final native VerticalAlignment getVerticalAlignment() /*-{
-		if (this.getVerticalAlign() != null) return @net.edzard.kinetic.Text.VerticalAlignment::valueOf(Ljava/lang/String;)(this.getVerticalAlign().toUpperCase());
-		else return null;
-	}-*/;
-	
-	/**
-	 * Assign a vertical alignment for this text shape.
-	 * @param align A vertical alignment
-	 */
-	public final native void setVerticalAlignment(VerticalAlignment align) /*-{
-		this.setVerticalAlign(align.@net.edzard.kinetic.Text.VerticalAlignment::toString()().toLowerCase());
-	}-*/;
-	
-	/**
-	 * Retrieve the padding size for this text shape.
-	 * @return The padding size
-	 */
-	public final native double getPadding() /*-{
-		return this.getPadding();
-	}-*/;
-	
-	/**
-	 * Assign a padding size to this text shape.
-	 * @param padding A padding size
-	 */
-	public final native void setPadding(double padding) /*-{
-		this.setPadding(amount);
-	}-*/;
-	
-	/**
-	 * Retrieve the width of this text shape.
-	 * @return The width
-	 */
-	public final native double getWidth() /*-{
-		if (this.getWidth() == "auto") return 0;
-		else return this.getWidth();
-	}-*/;
-	
-	/**
-	 * Set the width of this text shape.
-	 * @param width The width
-	 */
-	public final native void setWidth(double width) /*-{
-		this.setWidth(width);
-	}-*/;
-	
-	/**
 	 * Retrieve Vertical extents of the text.
 	 * @return The text height in pixels
 	 */
@@ -270,7 +172,7 @@ public class Text extends Shape {
 	 * @param duration The time it will take for the animation to complete, in seconds
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Text target, double duration) {
+	public final Transition transitionTo(TextPath target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -282,12 +184,10 @@ public class Text extends Shape {
 	 * @param callback A function that will be called at the end of the animation
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Text target, double duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(TextPath target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		if (this.getFontSize() != target.getFontSize()) sb.append("fontSize:").append(target.getFontSize()).append(",");
 		if (this.getTextStrokeWidth() != target.getTextStrokeWidth()) sb.append("textStrokeWidth:").append(target.getTextStrokeWidth()).append(",");
-		if (this.getPadding() != target.getPadding()) sb.append("padding:").append(target.getPadding()).append(",");
-		if (this.getWidth() != target.getWidth()) sb.append("width:").append(target.getWidth()).append(",");
 		return transitionToShape(target, sb, duration, ease, callback);
 	}
 }

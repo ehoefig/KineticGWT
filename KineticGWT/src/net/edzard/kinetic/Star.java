@@ -64,7 +64,7 @@ public class Star extends Shape {
 	 * @param duration The time it will take for the animation to complete, in seconds
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Star target, int duration) {
+	public final Transition transitionTo(Star target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -76,7 +76,7 @@ public class Star extends Shape {
 	 * @param callback A function that will be called at the end of the animation
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Star target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(Star target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		if (this.getInnerRadius() != target.getInnerRadius()) sb.append("innerRadius:").append(target.getInnerRadius()).append(",");
 		if (this.getOuterRadius() != target.getOuterRadius()) sb.append("outerRadius:").append(target.getOuterRadius()).append(",");

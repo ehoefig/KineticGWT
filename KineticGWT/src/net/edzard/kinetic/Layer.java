@@ -32,7 +32,7 @@ public class Layer extends Container {
 	 * @return An object for controlling the transition.
 	 */
 	// Delegates to node (no special properties to animate)
-	public final Transition transitionTo(Node target, int duration) {
+	public final Transition transitionTo(Node target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -45,7 +45,7 @@ public class Layer extends Container {
 	 * @return An object for controlling the transition.
 	 */
 	// Delegates to node (no special properties to animate)
-	public final Transition transitionTo(Node target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(Node target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		return transitionToNode(target, sb, duration, ease, callback);
 	}

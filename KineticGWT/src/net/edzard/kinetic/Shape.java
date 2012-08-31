@@ -131,11 +131,18 @@ public abstract class Shape extends Node {
 	}-*/;
 	
 	/**
+	 * Removes the shadow of this shape.
+	 */
+	public final native void clearShadow() /*-{
+		this.attrs.shadow = undefined;
+	}-*/;
+	
+	/**
 	 * Clears the shape's fill style
 	 */
-	public final native void clearFill() /*-{
-		this.setFill(null);
-	}-*/;
+//	public final native void clearFill() /*-{
+//		this.setFill(null);
+//	}-*/;
 
 	/**
 	 * Retrieve the shape's fill style.
@@ -305,15 +312,15 @@ public abstract class Shape extends Node {
 	 * Saves the pixel data for use with the <emph>PIXEL</emph> detection strategy.
 	 * Needs to be called after each drawing operation to update the internal data buffers.
 	 */
-	public final native void saveData() /*-{
-		this.saveData();
+	public final native void saveImageData() /*-{
+		this.saveImageData();
 	}-*/;
 
 	/**
 	 * Clears the pixel data for use with the <emph>PIXEL</emph> detection strategy.
 	 */
-	public final native void clearData() /*-{
-		this.clearData();
+	public final native void clearImageData() /*-{
+		this.clearImageData();
 	}-*/;
 	
 	/**
@@ -327,7 +334,7 @@ public abstract class Shape extends Node {
 	 * @param callback Will be called at the end of the transition
 	 * @return An object to control the transition animation
 	 */
-	final Transition transitionToShape(Shape target, StringBuffer sb, int duration, EasingFunction ease, Runnable callback) {
+	final Transition transitionToShape(Shape target, StringBuffer sb, double duration, EasingFunction ease, Runnable callback) {
 		if (this.getStrokeWidth() != target.getStrokeWidth()) sb.append("strokeWidth:").append(target.getStrokeWidth()).append(",");
 		return transitionToNode(target, sb, duration, ease, callback);
 	}

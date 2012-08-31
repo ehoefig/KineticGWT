@@ -4,5 +4,5 @@
 	<inherits name="com.google.gwt.user.User" />
 	<entry-point class='net.edzard.kinetic.Kinetic'/>
 	<source path="kinetic"/>
-	<script src="kinetic-v3.10.0.js"/>
+	<script src="kinetic-v3.10.5.js"/>
 </module>

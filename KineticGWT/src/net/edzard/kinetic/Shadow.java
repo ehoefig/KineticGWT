@@ -21,7 +21,7 @@ public class Shadow {
 	 * Default Ctor.
 	 */
 	public Shadow() {
-		colour = ColourPalette.black.opaque();
+		colour = Colour.black;
 		blur = 10;
 		offset = new Vector2d(5,5);
 		alpha = 0.75;

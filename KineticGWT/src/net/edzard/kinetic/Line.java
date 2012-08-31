@@ -157,7 +157,7 @@ public class Line extends Polygon {	// Makes sense from code re-use point of vie
 	 * @param duration The time it will take for the animation to complete, in seconds
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Line target, int duration) {
+	public final Transition transitionTo(Line target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -170,7 +170,7 @@ public class Line extends Polygon {	// Makes sense from code re-use point of vie
 	 * @return An object for controlling the transition.
 	 */
 	// Delegates to shape (no special properties to animate)
-	public final Transition transitionTo(Line target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(Line target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		return transitionToShape(target, sb, duration, ease, callback);
 	}

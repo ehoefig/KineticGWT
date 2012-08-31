@@ -78,7 +78,7 @@ public class MathTooling {
 	  // the lenghts of the two lines the point is actually
 	  // on the line segment.
 
-	  // if the point isnÕt on the line, return null
+	  // if the point isnt on the line, return null
 	  if(Math.abs(len1-segmentLen1)>0.01 || Math.abs(len2-segmentLen2)>0.01)
 	    return null;
 
@@ -88,10 +88,26 @@ public class MathTooling {
 	
 	/**
 	 * Calculate intersection of a circle and a line segment.
+	 * The line segment has to start at the circle's midpopint.
+	 * @param start Start point of line segment, same as circle midpoint
+	 * @param end End point of line segment
+	 * @param radius radius of circle
+	 * @return Either a vector (point of intersection), or null (no intersection at all - the end point is within the radius of the circle).
+	 */
+	public static final Vector2d intersectLineSegmentStartingFromCircleMidPointWithCircle(final Vector2d start, 
+			final Vector2d end, final double radius) {	
+		final Vector2d dp = new Vector2d(end.x - start.x, end.y - start.y);
+		final double a = dp.x * dp.x + dp.y * dp.y;
+		final double mu = (Math.sqrt(4 * a * radius * radius)) / (2 * a);
+		return mu <= 1? new Vector2d(start.x + mu * dp.x, start.y + mu * dp.y) : null;
+	}
+	
+	/**
+	 * Calculate intersection of a circle and a line segment.
 	 * @param start Start point of line segment
 	 * @param end End point of line segment
 	 * @param midPoint center of circle
-	 * @param radius radus of circle
+	 * @param radius radius of circle
 	 * @return Either two vectors (line segment is intersecting circle in two places),
 	 * one vector (line segment intersects in one place), no vectors (line segment does not
 	 * intersect circle, but line through points does), or null (no intersection at all).
@@ -157,6 +173,10 @@ public class MathTooling {
 				(Math.abs(vExistent.y - point.y) < epsilon))
 				return true;
 		return false;
+	}
+
+	public static boolean isPointInCircle(Vector2d point, Vector2d circleCenter, double circleRadius) {
+		return (point.distanceTo(circleCenter) < circleRadius);
 	}
 	
 

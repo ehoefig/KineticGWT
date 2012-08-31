@@ -18,7 +18,7 @@ public class Group extends Container {
 	 * @return An object for controlling the transition.
 	 */
 	// Delegates to node (no special properties to animate)
-	public final Transition transitionTo(Group target, int duration) {
+	public final Transition transitionTo(Group target, double duration) {
 		StringBuffer sb = new StringBuffer();
 		return transitionToNode(target, sb, duration, null, null);
 	}
@@ -32,7 +32,7 @@ public class Group extends Container {
 	 * @return An object for controlling the transition.
 	 */
 	// Delegates to node (no special properties to animate)
-	public final Transition transitionTo(Group target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(Group target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		return transitionToNode(target, sb, duration, ease, callback);
 	}

@@ -64,10 +64,13 @@ public abstract class Node extends JavaScriptObject {
 	 * Set the node's position.
 	 * @param position The position
 	 */
-	public final void setPosition(final Vector2d position) {
-		setX(position.x);
-		setY(position.y);
-	}
+	public final native void setPosition(final Vector2d position) /*-{
+		this.setPosition(position.@net.edzard.kinetic.Vector2d::x, position.@net.edzard.kinetic.Vector2d::y);
+	}-*/;
+//	public final void setPosition(final Vector2d position) {
+//		setX(position.x);
+//		setY(position.y);
+//	}
 	
 	/**
 	 * Set the node's position.
@@ -193,7 +196,7 @@ public abstract class Node extends JavaScriptObject {
 	 * @param listening True, if events should be handled. False, otherwise.
 	 */
 	public final native void setListening(boolean listening) /*-{
-		this.listen(listening);
+		this.setListening(listening);
 	}-*/;
 	
 	/**
@@ -201,7 +204,7 @@ public abstract class Node extends JavaScriptObject {
 	 * @return True, if events are handled
 	 */
 	public final native boolean isListening() /*-{
-		return this.getAttrs().listening;
+		return this.getListening();
 	}-*/;
 
 	/**
@@ -308,7 +311,7 @@ public abstract class Node extends JavaScriptObject {
 	 * @param drag True, if the node should be dragable. False, if not.
 	 */
 	public final native void setDraggable(boolean drag) /*-{
-		this.draggable(drag);
+		this.setDraggable(drag);
 	}-*/;
 
 	/**
@@ -404,8 +407,11 @@ public abstract class Node extends JavaScriptObject {
 	public final native void addEventListener(List<Event.Type> eventTypes, EventListener handler) /*-{	
 		this.on(@net.edzard.kinetic.Node::createEventTypeString(Ljava/util/List;)(eventTypes), function(evt) {
 			if (evt != null) {
-				var javaEvt = @net.edzard.kinetic.Event::new(Lnet/edzard/kinetic/Event$Type;)(
-					@net.edzard.kinetic.Event.Type::valueOf(Ljava/lang/String;)(evt.type.toUpperCase())
+				var javaEvt = @net.edzard.kinetic.Event::new(Lnet/edzard/kinetic/Event$Type;Lnet/edzard/kinetic/Event$Button;II)(
+					@net.edzard.kinetic.Event.Type::valueOf(Ljava/lang/String;)(evt.type.toUpperCase()),
+					@net.edzard.kinetic.Event.Button::fromInteger(I)(evt.button),
+					evt.offsetX,
+					evt.offsetY
 				);
 				javaEvt.@net.edzard.kinetic.Event::setShape(Lnet/edzard/kinetic/Shape;)(evt.shape);
 				var bubble = handler.@net.edzard.kinetic.Node.EventListener::handle(Lnet/edzard/kinetic/Event;)(javaEvt);
@@ -454,12 +460,13 @@ public abstract class Node extends JavaScriptObject {
 	 * @param callback Will be called at the end of the transition
 	 * @return An object to control the transition animation
 	 */
-	final Transition transitionToNode(Node target, StringBuffer sb, int duration, EasingFunction ease, Runnable callback) {
+	final Transition transitionToNode(Node target, StringBuffer sb, double duration, EasingFunction ease, Runnable callback) {
 		if (this.getPosition() != target.getPosition()) sb.append("x:").append(target.getPosition().x).append(",").append("y:").append(target.getPosition().y).append(",");
 		if (this.getAlpha() != target.getAlpha()) sb.append("alpha:").append(target.getAlpha()).append(",");
-		if (this.getScale() != target.getScale()) sb.append("scale:{x:").append(target.getScale().x).append(",").append("y:").append(target.getScale().y).append("},");
+		//if (!this.getScale().equals(target.getScale())) sb.append("scale: [").append(target.getScale().x).append(",").append(target.getScale().y).append("],");
+		if (!this.getScale().equals(target.getScale())) sb.append("scale:{x:").append(target.getScale().x).append(",").append("y:").append(target.getScale().y).append("},");
 		if (this.getRotation() != target.getRotation()) sb.append("rotation:").append(target.getRotation()).append(",");
-		if (this.getOffset() != target.getOffset())  sb.append("centerOffset:{x:").append(target.getOffset().x).append(",").append("y:").append(target.getOffset().y).append("},");
+		if (!this.getOffset().equals(target.getOffset())) sb.append("centerOffset:{x:").append(target.getOffset().x).append(",").append("y:").append(target.getOffset().y).append("},");
 		if (ease != null) sb.append("easing:\'").append(ease.toString()).append("\',");
 		sb.append("duration:").append(duration);
 		return transitionToInternal(sb.toString(), callback);
@@ -473,8 +480,8 @@ public abstract class Node extends JavaScriptObject {
 	 * @return An object to control the transition animation
 	 */
 	private final native Transition transitionToInternal(String configStr, Runnable callback) /*-{
+		
 		eval("var config = {" + configStr + "}");
-		//console.log(configStr);
 		if (callback != null) {
 			config.callback = function() {callback.@java.lang.Runnable::run()();};
 		}

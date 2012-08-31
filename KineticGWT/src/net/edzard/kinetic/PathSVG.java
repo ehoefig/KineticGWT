@@ -32,7 +32,7 @@ public class PathSVG extends Shape {
 	 * @param duration The time it will take for the animation to complete, in seconds
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(PathSVG target, int duration) {
+	public final Transition transitionTo(PathSVG target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -45,7 +45,7 @@ public class PathSVG extends Shape {
 	 * @return An object for controlling the transition.
 	 */
 	// Delegates to shape (no special properties to animate)
-	public final Transition transitionTo(PathSVG target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(PathSVG target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		return transitionToShape(target, sb, duration, ease, callback);
 	}

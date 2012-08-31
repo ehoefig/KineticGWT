@@ -162,7 +162,7 @@ public class Stage extends Container {
 	 * @param duration The time it will take for the animation to complete, in seconds
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Stage target, int duration) {
+	public final Transition transitionTo(Stage target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -175,7 +175,7 @@ public class Stage extends Container {
 	 * @return An object for controlling the transition.
 	 */
 	// TODO: test animate height and width of stage
-	public final Transition transitionTo(Stage target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(Stage target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		if (this.getWidth() != target.getWidth()) sb.append("width:").append(target.getWidth()).append(",");
 		if (this.getHeight() != target.getHeight()) sb.append("height:").append(target.getHeight()).append(",");

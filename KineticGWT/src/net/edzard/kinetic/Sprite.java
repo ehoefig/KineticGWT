@@ -143,7 +143,7 @@ public class Sprite extends Shape {
 	 * @param duration The time it will take for the animation to complete, in seconds
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Sprite target, int duration) {
+	public final Transition transitionTo(Sprite target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -156,7 +156,7 @@ public class Sprite extends Shape {
 	 * @param callback A function that will be called at the end of the animation
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(Sprite target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(Sprite target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		if (this.getFrameRate() != target.getFrameRate()) sb.append("frameRate:").append(target.getFrameRate()).append(",");
 		return transitionToShape(target, sb, duration, ease, callback);

@@ -13,6 +13,10 @@ public class Vector2d {
 	/** Unit vector in direction of y axis */
 	public static final Vector2d yUnit = new Vector2d(0,1);
 	
+	/** Origin vector (0,0) */
+	public static final Vector2d origin = new Vector2d(0,0);
+	
+	
 	/** The horizontal component */
 	public double x;
 	/** The vertical component */
@@ -114,6 +118,15 @@ public class Vector2d {
 	     this.y += other.y;
 	}
 
+	/**
+	 * Add a given vector to this one.
+	 * @param x x component of the other vector
+	 * @param y y component of the other vector
+	 */
+	public final void add(double x, double y) {
+		 this.x += x;
+	     this.y += y;
+	}
 	
 	/**
 	 * Normalizes the length of vector to 1, while keeping the direction.

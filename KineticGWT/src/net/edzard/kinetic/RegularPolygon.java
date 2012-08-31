@@ -5,10 +5,27 @@ package net.edzard.kinetic;
  * Regular polygons are defined using a radius and a number of sides.
  * @author Ed
  */
-public class RegularPolygon extends Circle { // Makes Sense: Circle has a radius
+public class RegularPolygon extends Shape {
 
 	/** Protected default Ctor keeps GWT happy */ 
 	protected RegularPolygon() {}
+	
+	/**
+	 * Retrieve this regular polygon's radius.
+	 * @return The radius
+	 */
+	public final native double getRadius() /*-{
+		return this.getRadius();
+	}-*/;
+
+	/**
+	 * Assign a radius.
+	 * @param radius The new radius value
+	 */
+	public final native void setRadius(double radius) /*-{
+		this.setRadius(radius);
+	}-*/;
+	
 	
 	/**
 	 * Retrieve the number of sides for this regular polygon shape.
@@ -32,7 +49,7 @@ public class RegularPolygon extends Circle { // Makes Sense: Circle has a radius
 	 * @param duration The time it will take for the animation to complete, in seconds
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(RegularPolygon target, int duration) {
+	public final Transition transitionTo(RegularPolygon target, double duration) {
 		return transitionTo(target, duration, null, null);
 	}
 	
@@ -44,7 +61,7 @@ public class RegularPolygon extends Circle { // Makes Sense: Circle has a radius
 	 * @param callback A function that will be called at the end of the animation
 	 * @return An object for controlling the transition.
 	 */
-	public final Transition transitionTo(RegularPolygon target, int duration, EasingFunction ease, Runnable callback) {
+	public final Transition transitionTo(RegularPolygon target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
 		if (this.getRadius() != target.getRadius()) sb.append("radius:").append(target.getRadius()).append(",");
 		if (this.getSides() != target.getSides()) sb.append("sides:").append(target.getSides()).append(",");
