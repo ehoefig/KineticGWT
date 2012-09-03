@@ -585,5 +585,33 @@ public class Kinetic {
 	      draggable: @net.edzard.kinetic.Kinetic::defaultDragability
 	    });
 	}-*/;
+	
+	/**
+	 * Create an Animation.
+	 * @param context The context node (a layer)
+	 * @param fct A custom drawing function
+	 * @return An object that can be used to control the animation
+	 */
+	public static native Animation createAnimation(Node context, Drawable fct) /*-{
+	    return new $wnd.Kinetic.Animation({
+	     func: function(frame) {
+            fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff)
+          },
+          node: context
+	    });
+	}-*/;
+	
+	
+	/**
+	 * Set a custom drawing callback function.
+	 * @param fct Will be called whenever Kinetic decides to redraw the stage
+	 */
+	public final native void setDrawingFunction(Drawable fct) /*-{
+		this.onFrame(function(frame) {
+          	fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(
+          		@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff)
+          	);
+        });
+	}-*/; 
 
 }
