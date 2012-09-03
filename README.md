@@ -4,7 +4,7 @@ is easily reusable as a module.
 How to use
 ==========
 
-1. Add  the following dependency to your pom.xml:
+1. Add the following dependency to your pom.xml:
 
 		<dependency>
 			<groupId>net.edzard</groupId>
@@ -12,8 +12,14 @@ How to use
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
-2. Add <inherits name="net.edzard.kinetic"/> to your .gwt.xml file.
-3. Add <script type="text/javascript" src="..projname../kinetic-v3.10.5.js"></script> to your HTML
+2. Add the following to your .gwt.xml file:
+
+		<inherits name="net.edzard.kinetic"/>
+			
+3. Add the following to your HTML file:
+
+		<script type="text/javascript" src="..projname../kinetic-v3.10.5.js"></script> 
+		
 
 Code sample
 ===========
