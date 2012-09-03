@@ -1,6 +1,5 @@
 package net.edzard.kinetic.test;
 
-import net.edzard.kinetic.Circle;
 import net.edzard.kinetic.Ellipse;
 import net.edzard.kinetic.Kinetic;
 import net.edzard.kinetic.Layer;

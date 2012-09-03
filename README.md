@@ -1,5 +1,4 @@
-This fork transforms KineticGWT into a proper Maven project, so that it
-is easily reusable as a module.
+KineticGWT is a wrapper of Eric Drowell's excellent [kinetic.js](http://www.kineticjs.com/) library for [Google Web Toolkit](https://developers.google.com/web-toolkit/) (GWT).
 
 How to use
 ==========
@@ -9,7 +8,7 @@ How to use
 		<dependency>
 			<groupId>net.edzard</groupId>
 			<artifactId>kineticgwt</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.9</version>
 		</dependency>
 		
 2. Add the following to your .gwt.xml file:

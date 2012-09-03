@@ -1,5 +1,10 @@
 package net.edzard.kinetic;
 
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONNumber;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONValue;
+
 /**
  * Stores a two-dimensional value.
  * Used for positions and sizes (horizontal and vertical extents).
@@ -48,6 +53,40 @@ public class Vector2d {
 	public Vector2d(final Vector2d other) {
 		this.x = other.x;
 		this.y = other.y;
+	}
+	
+	/**
+	 * Serialization Ctor.
+	 * @param val A serialized vector. Either an array with two components or an object with x and y properties.
+	 */
+	public Vector2d(final JSONValue val) {
+		JSONObject obj = val.isObject();
+		if (obj != null) {
+			// Is object
+			this.x = obj.get("x").isNumber().doubleValue();
+			this.y = obj.get("y").isNumber().doubleValue();
+		} else {
+			final JSONArray array = val.isArray();
+			if (array != null) {
+				// Is array
+				this.x = array.get(0).isNumber().doubleValue();
+				this.y = array.get(1).isNumber().doubleValue();
+			} else {
+				// Not object or array
+				this.x = this.y = Double.NaN;
+			}
+		}
+	}
+
+	/**
+	 * Serialize vector to JSON.
+	 * @return A JSON object with x and y properties.
+	 */
+	public JSONValue toJson() {
+		final JSONObject result = new JSONObject();
+		result.put("x", new JSONNumber(this.x));
+		result.put("y", new JSONNumber(this.y));
+		return result;
 	}
 
 	/*
