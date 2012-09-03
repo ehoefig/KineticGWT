@@ -6,7 +6,6 @@ import java.util.Map;
 import net.edzard.kinetic.Line.LineCap;
 import net.edzard.kinetic.Shape.LineJoin;
 
-import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.resources.client.ImageResource;
 
 /**
@@ -15,7 +14,7 @@ import com.google.gwt.resources.client.ImageResource;
  * Once overriden, all subsequently created objects will use the new defaults.
  * @author Ed
  */
-public class Kinetic implements EntryPoint {
+public class Kinetic {
 	
 	/** The ID of an element in the HTML source which will hold the Kinetic {@link Stage} object. */
 	public static String stageId = "stage";
@@ -587,12 +586,4 @@ public class Kinetic implements EntryPoint {
 	    });
 	}-*/;
 
-	/**
-	 * Will be called upon loading of the module by GWT.
-	 * Does initialization work.
-	 */
-	@Override
-	public void onModuleLoad() {
-		// Currently doesn't do anything
-	}
 }

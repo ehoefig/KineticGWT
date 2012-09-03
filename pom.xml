@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!-- POM file generated with GWT webAppCreator -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.edzard</groupId>
+	<artifactId>kineticgwt</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>KineticGWT</name>
+	<description>A GWT wrapper for kinetic.js</description>
+	<url>https://github.com/ehoefig/KineticGWT</url>
+
+	<properties>
+		<gwtVersion>2.5.0-rc1</gwtVersion>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwtVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>2.5.0-rc1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<plugins>
+		    <plugin>
+		        <artifactId>maven-surefire-plugin</artifactId>
+		        <version>2.12.2</version>
+		        <configuration>
+		          <excludes>
+		            <exclude>**/*GwtTest.java</exclude>
+		          </excludes>
+		        </configuration>
+	      </plugin>
+	      
+	      <!-- GWT integration tests must be run by gwt-maven-plugin and
+	           have a naming convention of *GwtTest.java  -->
+	      <plugin>
+	        <groupId>org.codehaus.mojo</groupId>
+	        <artifactId>gwt-maven-plugin</artifactId>
+	        <version>1.0</version>
+	        <executions>
+	          <execution>
+	            <goals>
+	              <goal>test</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+	      </plugin>
+		</plugins>
+	</build>
+</project>
