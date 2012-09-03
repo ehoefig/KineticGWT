@@ -7,7 +7,7 @@ How to use
 1. Add  the following dependency to your pom.xml:
 
 		<dependency>
-			<groupId>com.github.ehoefig</groupId>
+			<groupId>net.edzard</groupId>
 			<artifactId>kineticgwt</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
