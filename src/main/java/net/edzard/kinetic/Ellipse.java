@@ -1,7 +1,7 @@
 package net.edzard.kinetic;
 
 /**
- * A circular shape.
+ * An elliptical shape.
  * @author Ed
  */
 public class Ellipse extends Shape {
@@ -10,41 +10,18 @@ public class Ellipse extends Shape {
 	protected Ellipse() {}
 	
 	/**
-	 * Retrieve this ellipse's radii.
-	 * @return The radii (x and y component)
+	 * Retrieve this ellipse's radius.
+	 * @return The radius (x and y component)
 	 */
-	public final native Vector2d getRadii() /*-{
+	public final native Vector2d getRadius() /*-{
 		return @net.edzard.kinetic.Vector2d::new(DD)(this.getRadius().x, this.getRadius().y);
 	}-*/;
-	
-	/**
-	 * Retrieve this ellipse's radius.
-	 * This convenience function returns the x component of the radii.
-	 * Used with circles only.
-	 * @return The radius (x component)
-	 */
-	public final native double getRadius() /*-{
-		return this.getRadius().x;
-	}-*/;
-
 
 	/**
-	 * Assign a single radius.
-	 * This creates a circle.
-	 * @param radius The new radius value
-	 */
-	public final native void setRadius(double radius) /*-{
-		this.setRadius({x: radius, y: radius});
-		//this.setRadius([radius, radius]);
-	}-*/;
-	
-	/**
-	 * Assign two radii.
-	 * This creates an ellipse
+	 * Assign the ellipse's radius.
 	 * @param radius The new radius value (x and y component)
 	 */
-	public final native void setRadii(Vector2d radii) /*-{
-		//this.setRadius({x: radius.x, y: radius.y});
+	public final native void setRadius(Vector2d radius) /*-{
 		this.setRadius([radii.@net.edzard.kinetic.Vector2d::x, radii.@net.edzard.kinetic.Vector2d::y]);
 	}-*/;
 	
@@ -68,7 +45,7 @@ public class Ellipse extends Shape {
 	 */
 	public final Transition transitionTo(Ellipse target, double duration, EasingFunction ease, Runnable callback) {
 		StringBuffer sb = new StringBuffer();
-		if (this.getRadii() != target.getRadii()) sb.append("radius: {x:").append(target.getRadii().x).append(", y: ").append(target.getRadii().y).append("},");
+		if (this.getRadius() != target.getRadius()) sb.append("radius: {x:").append(target.getRadius().x).append(", y: ").append(target.getRadius().y).append("},");
 		return transitionToShape(target, sb, duration, ease, callback);
 	}
 }

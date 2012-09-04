@@ -1,8 +1,8 @@
 package net.edzard.kinetic.test;
 
 import net.edzard.kinetic.Animation;
+import net.edzard.kinetic.Circle;
 import net.edzard.kinetic.Drawable;
-import net.edzard.kinetic.Ellipse;
 import net.edzard.kinetic.Frame;
 import net.edzard.kinetic.Kinetic;
 import net.edzard.kinetic.Layer;
@@ -38,7 +38,7 @@ public class AnimationGwtTest extends GWTTestCase {
 	
 	public void testAnimatingPosition() {
 		
-		final Ellipse e = Kinetic.createCircle(pos1, 10);
+		final Circle e = Kinetic.createCircle(pos1, 10);
 		
 		final Animation animation = Kinetic.createAnimation(layer, new Drawable() {
 			@Override

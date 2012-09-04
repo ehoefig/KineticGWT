@@ -300,7 +300,7 @@ public abstract class Node extends JavaScriptObject {
 	 * @param opacity A value between 0 and 1. 0 is complete transparency and 1 is complete opaque.
 	 */
 	public final native void setOpacity(double opacity) /*-{
-		this.setOpacity(alpha);
+		this.setOpacity(opacity);
 	}-*/;
 
 	/**
@@ -509,8 +509,7 @@ public abstract class Node extends JavaScriptObject {
 	 */
 	final Transition transitionToNode(Node target, StringBuffer sb, double duration, EasingFunction ease, Runnable callback) {
 		if (this.getPosition() != target.getPosition()) sb.append("x:").append(target.getPosition().x).append(",").append("y:").append(target.getPosition().y).append(",");
-		if (this.getOpacity() != target.getOpacity()) sb.append("alpha:").append(target.getOpacity()).append(",");
-		//if (!this.getScale().equals(target.getScale())) sb.append("scale: [").append(target.getScale().x).append(",").append(target.getScale().y).append("],");
+		if (this.getOpacity() != target.getOpacity()) sb.append("opacity:").append(target.getOpacity()).append(",");
 		if (!this.getScale().equals(target.getScale())) sb.append("scale:{x:").append(target.getScale().x).append(",").append("y:").append(target.getScale().y).append("},");
 		if (this.getRotation() != target.getRotation()) sb.append("rotation:").append(target.getRotation()).append(",");
 		if (!this.getOffset().equals(target.getOffset())) sb.append("centerOffset:{x:").append(target.getOffset().x).append(",").append("y:").append(target.getOffset().y).append("},");
