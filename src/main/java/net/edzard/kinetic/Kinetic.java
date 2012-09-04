@@ -596,7 +596,7 @@ public class Kinetic {
 	public static native Animation createAnimation(Node context, Drawable fct) /*-{
 	    return new $wnd.Kinetic.Animation({
 	     func: function(frame) {
-            fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff)
+            fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff));
           },
           node: context
 	    });

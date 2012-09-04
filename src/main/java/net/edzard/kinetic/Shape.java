@@ -11,19 +11,6 @@ package net.edzard.kinetic;
  *
  */
 public abstract class Shape extends Node {
-	
-	/**
-	 * Decides about the algorithm used for detecting if a position is within the shape.
-	 * <emph>PATH</emph> is faster, but can only be used with vector gfx.
-	 * <emph>PIXEL</emph> is slower, but works for pixel art (images, sprites, text).
-	 * @author Ed
-	 */
-	public enum DetectionType {
-		/** Uses vector geometry */
-		PATH,
-		/** Uses pixels */
-		PIXEL
-	}
 
 	/**
 	 * Defines the way that to meeting lines are joined.
@@ -289,39 +276,6 @@ public abstract class Shape extends Node {
        		colorStops: theColourStops
 		});
 	}-*/;
-		
-	/**
-	 * Retrieve the current detection type used for the shape.
-	 * @return The detection type
-	 */
-	public final native DetectionType getDetectionType() /*-{
-		if (this.getDetectionType() != null) 
-			return @net.edzard.kinetic.Shape.DetectionType::valueOf(Ljava/lang/String;)(this.getDetectionType().toUpperCase());
-		else return null;
-	}-*/;
-
-	/**
-	 * Assign a detection type to the shape.
-	 * @param type A detection type
-	 */
-	public final native void setDetectionType(DetectionType type) /*-{
-		this.setDetectionType(type.@net.edzard.kinetic.Shape.DetectionType::toString()().toLowerCase());
-	}-*/;
-	
-	/**
-	 * Saves the pixel data for use with the <emph>PIXEL</emph> detection strategy.
-	 * Needs to be called after each drawing operation to update the internal data buffers.
-	 */
-	public final native void saveImageData() /*-{
-		this.saveImageData();
-	}-*/;
-
-	/**
-	 * Clears the pixel data for use with the <emph>PIXEL</emph> detection strategy.
-	 */
-	public final native void clearImageData() /*-{
-		this.clearImageData();
-	}-*/;
 	
 	/**
 	 * Animate a transition of the shape.
@@ -338,4 +292,29 @@ public abstract class Shape extends Node {
 		if (this.getStrokeWidth() != target.getStrokeWidth()) sb.append("strokeWidth:").append(target.getStrokeWidth()).append(",");
 		return transitionToNode(target, sb, duration, ease, callback);
 	}
+
+	/**
+	 * Check if a point is within the shape.
+	 * @param point The coordinate to check
+	 * @return True, if within the shape
+	 */
+	final native boolean intersects(Vector2d point) /*-{
+		return this.intersects({
+			x: point.@net.edzard.kinetic.Vector2d::x,
+            y: point.@net.edzard.kinetic.Vector2d::y
+          });
+	}-*/;
+	
+	/**
+	 * Set a custom drawing callback function.
+	 * @param fct Will be called whenever Kinetic decides to redraw the shape
+	 */
+	// TODO: find out if this substitutes default drawing behaviour or is called in addition to it. 
+	public final native void setDrawingFunction(Drawable fct) /*-{
+		this.setDrawFunc(function(frame) {
+          	fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(
+          		@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff)
+          	);
+        });
+	}-*/; 
 }

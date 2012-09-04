@@ -53,37 +53,67 @@ public abstract class Node extends JavaScriptObject {
 	protected Node() {}
 	
 	/**
-	 * Retrieve the node's position.
-	 * @return The position
+	 * Retrieve the node's absolute opacity.
+	 * @return A value between 0 and 1. 0 is complete transparency and 1 is complete opaque.
 	 */
-	public final Vector2d getPosition() {
-		return new Vector2d(getX(), getY());
-	}
+	public native final double getAbsoluteOpacity() /*-{
+		return this.getAbsoluteOpacity();
+	}-*/;
 	
 	/**
-	 * Set the node's position.
+	 * Retrieve the node's absolute position.
+	 * @return The position
+	 */
+	public native final Vector2d getAbsolutePosition() /*-{
+		var pos = this.getAbsolutePosition();
+		return @net.edzard.kinetic.Vector2d::new(DD)(pos.x, pos.y);
+	}-*/;
+	
+	/**
+	 * Set the node's absolute position.
+	 * @param position The position
+	 */
+	public final native void setAbsolutePosition(final Vector2d position) /*-{
+		this.setAbsolutePosition(position.@net.edzard.kinetic.Vector2d::x, position.@net.edzard.kinetic.Vector2d::y);
+	}-*/;
+	
+	/**
+	 * Retrieve the node's absolute Z index.
+	 * @return The z index
+	 */
+	public native final double getAbsoluteZIndex() /*-{
+		return this.getAbsoluteZIndex();
+	}-*/;
+	
+	/**
+	 * Retrieve the node's position relative to container.
+	 * @return The position
+	 */
+	public native final Vector2d getPosition() /*-{
+		var pos = this.getPosition();
+		return @net.edzard.kinetic.Vector2d::new(DD)(pos.x, pos.y);
+	}-*/;
+
+	
+	/**
+	 * Set the node's position relative to container.
 	 * @param position The position
 	 */
 	public final native void setPosition(final Vector2d position) /*-{
 		this.setPosition(position.@net.edzard.kinetic.Vector2d::x, position.@net.edzard.kinetic.Vector2d::y);
 	}-*/;
-//	public final void setPosition(final Vector2d position) {
-//		setX(position.x);
-//		setY(position.y);
-//	}
 	
 	/**
-	 * Set the node's position.
+	 * Set the node's position relative to container.
 	 * @param x A horizontal position
 	 * @param y A vertical position
 	 */
-	public final void setPosition(double x, double y) {
-		setX(x);
-		setY(y);
-	}
+	public final native void setPosition(double x, double y) /*-{
+		this.setPosition(x,y);
+	}-*/;
 	
 	/**
-	 * Get horizontal position.
+	 * Get horizontal position relative to container.
 	 * @return The horizontal position
 	 */
 	private final native double getX() /*-{
@@ -91,7 +121,7 @@ public abstract class Node extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * Set horizontal position.
+	 * Set horizontal position relative to container.
 	 * @param x The horizontal position
 	 */
 	private final native void setX(double x) /*-{
@@ -99,7 +129,7 @@ public abstract class Node extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * Get vertical position.
+	 * Get vertical position relative to container.
 	 * @param x The vertical position
 	 */
 	private final native double getY() /*-{
@@ -107,7 +137,7 @@ public abstract class Node extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * Set the vertical position.
+	 * Set the vertical position relative to container.
 	 * @param y The vertical position
 	 */
 	private final native void setY(double y) /*-{
@@ -136,6 +166,23 @@ public abstract class Node extends JavaScriptObject {
 	 */
 	public final native boolean isVisible() /*-{
 		return this.isVisible();
+	}-*/;
+	
+	/**
+	 * Move the node's position relative to container.
+	 * @param position The position
+	 */
+	public final native void move(final Vector2d position) /*-{
+		this.move(position.@net.edzard.kinetic.Vector2d::x, position.@net.edzard.kinetic.Vector2d::y);
+	}-*/;
+	
+	/**
+	 * Move the node's position relative to container.
+	 * @param x A horizontal position
+	 * @param y A vertical position
+	 */
+	public final native void move(double x, double y) /*-{
+		this.move(x,y);
 	}-*/;
 	
 	/**
@@ -173,7 +220,7 @@ public abstract class Node extends JavaScriptObject {
 	}-*/;
 
 	/**
-	 * Get the current Z position of the node.
+	 * Get the current Z position of the node relative to the container.
 	 * Node needs to belong to a layer.
 	 * @return The Z position
 	 */
@@ -244,16 +291,16 @@ public abstract class Node extends JavaScriptObject {
 	 * Retrieve the opacity of the complete node.
 	 * @return A value between 0 and 1. 0 is complete transparency and 1 is complete opaque.
 	 */
-	public final native double getAlpha() /*-{
-		return this.getAlpha();
+	public final native double getOpacity() /*-{
+		return this.getOpacity();
 	}-*/;
 
 	/**
 	 * Set the opacity of the complete node.
-	 * @param alpha A value between 0 and 1. 0 is complete transparency and 1 is complete opaque.
+	 * @param opacity A value between 0 and 1. 0 is complete transparency and 1 is complete opaque.
 	 */
-	public final native void setAlpha(double alpha) /*-{
-		this.setAlpha(alpha);
+	public final native void setOpacity(double opacity) /*-{
+		this.setOpacity(alpha);
 	}-*/;
 
 	/**
@@ -462,7 +509,7 @@ public abstract class Node extends JavaScriptObject {
 	 */
 	final Transition transitionToNode(Node target, StringBuffer sb, double duration, EasingFunction ease, Runnable callback) {
 		if (this.getPosition() != target.getPosition()) sb.append("x:").append(target.getPosition().x).append(",").append("y:").append(target.getPosition().y).append(",");
-		if (this.getAlpha() != target.getAlpha()) sb.append("alpha:").append(target.getAlpha()).append(",");
+		if (this.getOpacity() != target.getOpacity()) sb.append("alpha:").append(target.getOpacity()).append(",");
 		//if (!this.getScale().equals(target.getScale())) sb.append("scale: [").append(target.getScale().x).append(",").append(target.getScale().y).append("],");
 		if (!this.getScale().equals(target.getScale())) sb.append("scale:{x:").append(target.getScale().x).append(",").append("y:").append(target.getScale().y).append("},");
 		if (this.getRotation() != target.getRotation()) sb.append("rotation:").append(target.getRotation()).append(",");
