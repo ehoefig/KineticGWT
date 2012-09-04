@@ -86,9 +86,9 @@ public class Kinetic {
 	 * @param position The initial position
 	 * @param r The radius of the circle
 	 * @return The circle shape
-	 * @see Ellipse
+	 * @see Circle
 	 */
-	public static native Ellipse createCircle(Vector2d position, double r) /*-{
+	public static native Circle createCircle(Vector2d position, double r) /*-{
 	    return new $wnd.Kinetic.Circle({
           x: position.@net.edzard.kinetic.Vector2d::x,
           y: position.@net.edzard.kinetic.Vector2d::y,
@@ -104,16 +104,15 @@ public class Kinetic {
 	/**
 	 * Create an ellipse shape.
 	 * @param position The initial position
-	 * @param radii The radii of the elipse (x and y component)
+	 * @param radius The radius of the elipse (x and y component)
 	 * @return The ellipse shape
 	 * @see Ellipse
 	 */
-	public static native Ellipse createEllipse(Vector2d position, Vector2d radii) /*-{
-	    return new $wnd.Kinetic.Circle({
+	public static native Ellipse createEllipse(Vector2d position, Vector2d radius) /*-{
+	    return new $wnd.Kinetic.Ellipse({
           x: position.@net.edzard.kinetic.Vector2d::x,
           y: position.@net.edzard.kinetic.Vector2d::y,
-          //radius: [radii.@net.edzard.kinetic.Vector2d::x, radii.@net.edzard.kinetic.Vector2d::y],
-          radius: {x: radii.@net.edzard.kinetic.Vector2d::x, y: radii.@net.edzard.kinetic.Vector2d::y},
+          radius: {x: radius.@net.edzard.kinetic.Vector2d::x, y: radius.@net.edzard.kinetic.Vector2d::y},
 		  fill: @net.edzard.kinetic.Kinetic::defaultFillColour,
           stroke: @net.edzard.kinetic.Kinetic::defaultStrokeColour,
           strokeWidth: @net.edzard.kinetic.Kinetic::defaultStrokeWidth,
@@ -585,5 +584,19 @@ public class Kinetic {
 	      draggable: @net.edzard.kinetic.Kinetic::defaultDragability
 	    });
 	}-*/;
-
+	
+	/**
+	 * Create an Animation.
+	 * @param context The context node (a layer)
+	 * @param fct A custom drawing function
+	 * @return An object that can be used to control the animation
+	 */
+	public static native Animation createAnimation(Node context, Drawable fct) /*-{
+	    return new $wnd.Kinetic.Animation({
+	     func: function(frame) {
+            fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff));
+          },
+          node: context
+	    });
+	}-*/;
 }

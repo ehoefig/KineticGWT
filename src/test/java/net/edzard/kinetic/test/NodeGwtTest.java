@@ -1,6 +1,6 @@
 package net.edzard.kinetic.test;
 
-import net.edzard.kinetic.Ellipse;
+import net.edzard.kinetic.Circle;
 import net.edzard.kinetic.Kinetic;
 import net.edzard.kinetic.Layer;
 import net.edzard.kinetic.Stage;
@@ -37,7 +37,7 @@ public class NodeGwtTest extends GWTTestCase {
 
 	public void testCreationZOrder() {
 		for (int i=0; i < 3; ++i) {
-			Ellipse c = Kinetic.createCircle(new Vector2d(10,10), 5); 
+			Circle c = Kinetic.createCircle(new Vector2d(10,10), 5); 
 			layer.add(c);
 			assertEquals(i, c.getZIndex());	
 		}

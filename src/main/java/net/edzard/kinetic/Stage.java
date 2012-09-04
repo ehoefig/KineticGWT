@@ -145,18 +145,6 @@ public class Stage extends Container {
 	}-*/; 
 	
 	/**
-	 * Set a custom drawing callback function.
-	 * @param fct Will be called whenever Kinetic decides to redraw the stage
-	 */
-	public final native void setDrawingFunction(Drawable fct) /*-{
-		this.onFrame(function(frame) {
-          	fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(
-          		@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff)
-          	);
-        });
-	}-*/; 
-	
-	/**
 	 * Animate a linear transition of this stage object.
 	 * @param target Another stage object - defines the characteristics that the current stage object will have at the end of the animation
 	 * @param duration The time it will take for the animation to complete, in seconds

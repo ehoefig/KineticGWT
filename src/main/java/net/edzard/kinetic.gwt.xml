@@ -5,5 +5,5 @@
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="com.google.gwt.json.JSON" />
 	<source path="kinetic"/>
-	<script src="kinetic-v3.10.5.js"/>
+	<script src="kinetic-v4.0.1.js"/>
 </module>
