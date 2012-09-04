@@ -8,7 +8,7 @@ How to use
 		<dependency>
 			<groupId>net.edzard</groupId>
 			<artifactId>kineticgwt</artifactId>
-			<version>0.9</version>
+			<version>0.91</version>
 		</dependency>
 		
 2. Add the following to your .gwt.xml file:
@@ -17,7 +17,7 @@ How to use
 			
 3. Add the following to your HTML file:
 
-		<script type="text/javascript" src="..projname../kinetic-v3.10.5.js"></script> 
+		<script type="text/javascript" src="..projname../kinetic-v4.0.1.js"></script> 
 		
 
 Code sample
