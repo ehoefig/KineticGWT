@@ -3,6 +3,7 @@
   "http://google-web-toolkit.googlecode.com/svn/tags/2.5.0-rc1/distro-source/core/src/gwt-module.dtd">
 <module>
 	<inherits name="com.google.gwt.user.User" />
+	<inherits name="com.google.gwt.json.JSON" />
 	<source path="kinetic"/>
 	<script src="kinetic-v3.10.5.js"/>
 </module>
