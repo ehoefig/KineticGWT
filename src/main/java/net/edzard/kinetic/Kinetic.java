@@ -592,7 +592,6 @@ public class Kinetic {
 	 * @param fct A custom drawing function
 	 * @return An object that can be used to control the animation
 	 */
-	// TODO: test
 	public static native Animation createAnimation(Node context, Drawable fct) /*-{
 	    return new $wnd.Kinetic.Animation({
 	     func: function(frame) {
