@@ -40,6 +40,14 @@ public class Box2d {
 		this.right = right;
 		this.bottom = bottom;
 	}
+	
+	public final double getWidth() {
+		return this.right - this.left;
+	}
+	
+	public final double getHeight() {
+		return this.bottom - this.top;
+	}
 
 	/**
 	 * Check if a point is within the bounds of the box.

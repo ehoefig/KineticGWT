@@ -52,6 +52,14 @@ public abstract class Node extends JavaScriptObject {
 	 */
 	protected Node() {}
 	
+	public native final Layer getLayer() /*-{
+		return this.getLayer();
+	}-*/;
+	
+	public native final Node getParent() /*-{
+		return this.getParent();
+	}-*/;
+	
 	/**
 	 * Retrieve the node's absolute opacity.
 	 * @return A value between 0 and 1. 0 is complete transparency and 1 is complete opaque.
@@ -408,10 +416,11 @@ public abstract class Node extends JavaScriptObject {
 	 * @param box The drag bounds as two points (left/top and right/bottom) in node coordination space
 	 */
 	public final native void setDragBounds(Box2d box) /*-{
-		if (box.left != @java.lang.Double::NaN) bounds.left = box.@net.edzard.kinetic.Box2d::left;
-		if (box.top != @java.lang.Double::NaN) bounds.top = box.@net.edzard.kinetic.Box2d::top;
-		if (box.right != @java.lang.Double::NaN) bounds.right = box.@net.edzard.kinetic.Box2d::right;
-		if (box.b != @java.lang.Double::NaN) bounds.bottom = box.@net.edzard.kinetic.Box2d::bottom;
+		var bounds = {};
+		if (box.@net.edzard.kinetic.Box2d::left != @java.lang.Double::NaN) bounds.left = box.@net.edzard.kinetic.Box2d::left;
+		if (box.@net.edzard.kinetic.Box2d::top != @java.lang.Double::NaN) bounds.top = box.@net.edzard.kinetic.Box2d::top;
+		if (box.@net.edzard.kinetic.Box2d::right != @java.lang.Double::NaN) bounds.right = box.@net.edzard.kinetic.Box2d::right;
+		if (box.@net.edzard.kinetic.Box2d::bottom != @java.lang.Double::NaN) bounds.bottom = box.@net.edzard.kinetic.Box2d::bottom;
 		this.setDragBounds(bounds);
 	}-*/;	
 	

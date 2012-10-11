@@ -265,6 +265,22 @@ public class Text extends Shape {
 	}-*/;
 	
 	/**
+	 * Retrieve height of the logical box around the text.
+	 * @return The box height
+	 */
+	public final native double getBoxHeight() /*-{
+		return this.getBoxHeight();
+	}-*/;
+	
+	/**
+	 * Retrieve width of the logical box around the text.
+	 * @return The box width
+	 */
+	public final native int getBoxWidth() /*-{
+		return this.getBoxWidth();
+	}-*/;
+	
+	/**
 	 * Animate a linear transition of this text shape.
 	 * @param target Another text shape - defines the characteristics that the current text shape will have at the end of the animation
 	 * @param duration The time it will take for the animation to complete, in seconds
