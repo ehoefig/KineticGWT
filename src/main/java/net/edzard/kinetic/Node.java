@@ -124,7 +124,7 @@ public abstract class Node extends JavaScriptObject {
 	 * Get horizontal position relative to container.
 	 * @return The horizontal position
 	 */
-	private final native double getX() /*-{
+	public final native double getX() /*-{
 		return this.getX();
 	}-*/;
 
@@ -132,7 +132,7 @@ public abstract class Node extends JavaScriptObject {
 	 * Set horizontal position relative to container.
 	 * @param x The horizontal position
 	 */
-	private final native void setX(double x) /*-{
+	public final native void setX(double x) /*-{
 		this.setX(x);
 	}-*/;
 
@@ -140,7 +140,7 @@ public abstract class Node extends JavaScriptObject {
 	 * Get vertical position relative to container.
 	 * @param x The vertical position
 	 */
-	private final native double getY() /*-{
+	public final native double getY() /*-{
 		return this.getY();
 	}-*/;
 
@@ -148,7 +148,7 @@ public abstract class Node extends JavaScriptObject {
 	 * Set the vertical position relative to container.
 	 * @param y The vertical position
 	 */
-	private final native void setY(double y) /*-{
+	public final native void setY(double y) /*-{
 		this.setY(y);
 	}-*/;
 	
@@ -460,21 +460,27 @@ public abstract class Node extends JavaScriptObject {
 	 * @param handler The handler.
 	 */
 	// Seems to be buggy in kineticjs. Always getting mousemove events
+	// TODO Maik: It's not buggy, it just fails and then creates too many events due to the failure.
+	//             the evt variable is directly from the browser, not from kineticjs, that's why there's
+	//             a mismatch between event types
+	//             Touch also needs to be handled differently if evt should be used.
+	//       quick fix: ignore evt object
 	public final native void addEventListener(List<Event.Type> eventTypes, EventListener handler) /*-{	
 		this.on(@net.edzard.kinetic.Node::createEventTypeString(Ljava/util/List;)(eventTypes), function(evt) {
-			if (evt != null) {
-				var javaEvt = @net.edzard.kinetic.Event::new(Lnet/edzard/kinetic/Event$Type;Lnet/edzard/kinetic/Event$Button;II)(
-					@net.edzard.kinetic.Event.Type::valueOf(Ljava/lang/String;)(evt.type.toUpperCase()),
-					@net.edzard.kinetic.Event.Button::fromInteger(I)(evt.button),
-					evt.offsetX,
-					evt.offsetY
-				);
-				javaEvt.@net.edzard.kinetic.Event::setShape(Lnet/edzard/kinetic/Shape;)(evt.shape);
-				var bubble = handler.@net.edzard.kinetic.Node.EventListener::handle(Lnet/edzard/kinetic/Event;)(javaEvt);
-				evt.cancelBubble = !bubble;
-			} else {
+//			if (evt != null) {
+//				console.log(evt.type);
+//				var javaEvt = @net.edzard.kinetic.Event::new(Lnet/edzard/kinetic/Event$Type;Lnet/edzard/kinetic/Event$Button;II)(
+//					@net.edzard.kinetic.Event.Type::valueOf(Ljava/lang/String;)(evt.type.toUpperCase()),
+//					@net.edzard.kinetic.Event.Button::fromInteger(I)(evt.button),
+//					evt.offsetX,
+//					evt.offsetY
+//				);
+//				javaEvt.@net.edzard.kinetic.Event::setShape(Lnet/edzard/kinetic/Shape;)(evt.shape);
+//				var bubble = handler.@net.edzard.kinetic.Node.EventListener::handle(Lnet/edzard/kinetic/Event;)(javaEvt);
+//				evt.cancelBubble = !bubble;
+//			} else {
 				handler.@net.edzard.kinetic.Node.EventListener::handle(Lnet/edzard/kinetic/Event;)(null);
-			}
+//			}
 		});
 	}-*/;
 	
