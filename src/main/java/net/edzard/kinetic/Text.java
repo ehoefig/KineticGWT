@@ -199,23 +199,6 @@ public class Text extends Shape {
 	}-*/;
 	
 	/**
-	 * Retrieve the vertical alignment for this text shape.
-	 * @return The vertical alignment
-	 */
-	public final native VerticalAlignment getVerticalAlignment() /*-{
-		if (this.getVerticalAlign() != null) return @net.edzard.kinetic.Text.VerticalAlignment::valueOf(Ljava/lang/String;)(this.getVerticalAlign().toUpperCase());
-		else return null;
-	}-*/;
-	
-	/**
-	 * Assign a vertical alignment for this text shape.
-	 * @param align A vertical alignment
-	 */
-	public final native void setVerticalAlignment(VerticalAlignment align) /*-{
-		this.setVerticalAlign(align.@net.edzard.kinetic.Text.VerticalAlignment::toString()().toLowerCase());
-	}-*/;
-	
-	/**
 	 * Retrieve the padding size for this text shape.
 	 * @return The padding size
 	 */
