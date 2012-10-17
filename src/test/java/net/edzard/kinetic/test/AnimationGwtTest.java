@@ -27,9 +27,8 @@ public class AnimationGwtTest extends GWTTestCase {
 	@Override
 	protected void gwtSetUp() throws Exception {
 		Element div = DOM.createDiv();
-		div.setId(Kinetic.stageId);
 		RootPanel.getBodyElement().appendChild(div);
-		this.stage = Kinetic.createStage(400, 400);
+		this.stage = Kinetic.createStage(div, 400, 400);
 		layer = Kinetic.createLayer(this.stage);
 	}
 

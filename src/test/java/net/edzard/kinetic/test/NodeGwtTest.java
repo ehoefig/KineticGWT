@@ -26,11 +26,10 @@ public class NodeGwtTest extends GWTTestCase {
 		
 		// Kinetic needs a special div in the DOM
 		Element div = DOM.createDiv();
-		div.setId(Kinetic.stageId);
 		RootPanel.getBodyElement().appendChild(div);
 		
 		// Setup stage
-		stage = Kinetic.createStage(400, 400);
+		stage = Kinetic.createStage(div, 400, 400);
 		layer = Kinetic.createLayer();
 		stage.add(layer);
 	}

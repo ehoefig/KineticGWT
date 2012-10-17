@@ -9,27 +9,27 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class StageGwtTest extends GWTTestCase {
 
+	private Element stageEl;
+	
 	@Override
 	public String getModuleName() {
 		return "net.edzard.kinetic";
 	}
 
 	
-	
 	@Override
 	protected void gwtSetUp() throws Exception {
 		
 		// Kinetic needs a special div in the DOM
-		Element div = DOM.createDiv();
-		div.setId(Kinetic.stageId);
-		RootPanel.getBodyElement().appendChild(div);
+		stageEl = DOM.createDiv();
+		RootPanel.getBodyElement().appendChild(stageEl);
 		
 	}
 
 
 
 	public void testSimple() {
-		Kinetic.createStage(400, 400);
+		Kinetic.createStage(stageEl, 400, 400);
 		assertTrue(true);
 	}	
 }

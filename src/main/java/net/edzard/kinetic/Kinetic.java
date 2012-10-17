@@ -6,6 +6,7 @@ import java.util.Map;
 import net.edzard.kinetic.Line.LineCap;
 import net.edzard.kinetic.Shape.LineJoin;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.resources.client.ImageResource;
 
 /**
@@ -15,9 +16,6 @@ import com.google.gwt.resources.client.ImageResource;
  * @author Ed
  */
 public class Kinetic {
-	
-	/** The ID of an element in the HTML source which will hold the Kinetic {@link Stage} object. */
-	public static String stageId = "stage";
 	
 	/** Default stroke width (1 pixel) */
 	public static double defaultStrokeWidth = 1.0;
@@ -45,14 +43,15 @@ public class Kinetic {
 
 	/**
 	 * Create a new stage object.
+	 * @param stageContainer The DOM element that Kinetic should use
 	 * @param stageWidth The stage's horizontal extent
 	 * @param stageHeight The stage's vertical extent
 	 * @return A stage object.
 	 * @see Stage
 	 */
-	public static native Stage createStage(int stageWidth, int stageHeight) /*-{
+	public static native Stage createStage(Element stageContainer, int stageWidth, int stageHeight) /*-{
 	    return new $wnd.Kinetic.Stage({
-	        container: @net.edzard.kinetic.Kinetic::stageId,
+	        container: stageContainer,
 	        width: stageWidth,
 	        height: stageHeight
 		});
