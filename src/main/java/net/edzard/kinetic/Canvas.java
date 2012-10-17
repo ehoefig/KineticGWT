@@ -17,7 +17,7 @@ public class Canvas extends JavaScriptObject {
 	}-*/;
 	
 	public final native CanvasElement getElement() /*-{
-		return this.getContext();
+		return this.getElement();
 	}-*/;
 	
 }
