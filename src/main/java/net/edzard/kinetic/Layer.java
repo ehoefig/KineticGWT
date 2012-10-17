@@ -1,5 +1,8 @@
 package net.edzard.kinetic;
 
+import com.google.gwt.canvas.dom.client.Context2d;
+import com.google.gwt.core.client.JavaScriptObject;
+
 /**
  * A layer object.
  * Layers contain nodes. Multiple layers can be assigned to a stage. Each will be drawn individually and combined into a single overall drawing.
@@ -86,7 +89,13 @@ public class Layer extends Container {
 	 */
 	public final native void setThrottle(int throttle) /*-{
 		this.setThrottle(throttle);
-	}-*/; 
+	}-*/;
+
+	public final native Canvas getCanvas() /*-{
+		return this.getCanvas();
+	}-*/;
 	
-	// getCanvas() and getContext() methods are internally available with Kineticjs, but not exposed in API
+	public final native Context2d getContext() /*-{
+		return this.getCanvas().getContext();
+	}-*/;
 }
