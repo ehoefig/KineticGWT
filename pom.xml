@@ -2,20 +2,51 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<!-- POM file generated with GWT webAppCreator -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.edzard</groupId>
 	<artifactId>kineticgwt</artifactId>
+	<version>0.9.1-SNAPSHOT</version>
 	<name>KineticGWT</name>
 	<description>A GWT wrapper for kinetic.js</description>
 	<url>https://github.com/ehoefig/KineticGWT</url>
+	<licenses>
+		<license>
+			<name>BSD 3-Clause License</name>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<scm>
+		<connection>scm:git:git@github.com:ehoefig/KineticGWT.git</connection>
+		<developerConnection>scm:git:git@github.com:ehoefig/KineticGWT.git</developerConnection>
+		<url>git@github.com:ehoefig/KineticGWT.git</url>
+	</scm>
+	
+	<developers>
+		<developer>
+			<id>ed</id>
+			<name>Edzard Höfig</name>
+			<email>info@edzard.net</email>
+		</developer>
+		<developer>
+			<id>maik</id>
+			<name>Maik Riechert</name>
+			<email>maik.riechert@arcor.de</email>
+		</developer>
+	</developers>
 
 	<properties>
-		<gwtVersion>2.5.0-rc2</gwtVersion>
+		<gwtVersion>2.5.0</gwtVersion>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 
 	<dependencies>
 
@@ -43,22 +74,24 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<filtering>true</filtering>
-				<directory>src/main/resources</directory>
-			</resource>
-			<!-- for GWT compiler we need to include the java sources into the jar -->
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.gwt.xml</include>
-					<include>**/*.java</include>
-				</includes>
-			</resource>
-		</resources>
 		<plugins>
+			<plugin>
+				<!-- Create source jar for GWT compiler. This isn't needed when deploying 
+					to Sonatype (as it's already included in the parent pom) but as we _require_ 
+					sources, it is included explicitly here so it also works with local installs 
+					etc. -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12.2</version>
@@ -88,5 +121,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<version>0.91</version>
 </project>
