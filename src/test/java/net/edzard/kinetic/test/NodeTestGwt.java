@@ -11,7 +11,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 
-public class NodeGwtTest extends GWTTestCase {
+public class NodeTestGwt extends GWTTestCase {
 
 	@Override
 	public String getModuleName() {

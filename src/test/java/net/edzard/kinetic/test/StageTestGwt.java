@@ -7,7 +7,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 
-public class StageGwtTest extends GWTTestCase {
+public class StageTestGwt extends GWTTestCase {
 
 	private Element stageEl;
 	

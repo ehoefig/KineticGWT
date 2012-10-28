@@ -14,7 +14,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 
-public class AnimationGwtTest extends GWTTestCase {
+public class AnimationTestGwt extends GWTTestCase {
 
 	private Stage stage;
 	private Layer layer;

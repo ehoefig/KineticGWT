@@ -92,22 +92,16 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12.2</version>
-				<configuration>
-					<excludes>
-						<exclude>**/*GwtTest.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
 
 			<!-- GWT integration tests must be run by gwt-maven-plugin and have a 
-				naming convention of *GwtTest.java -->
+				naming convention of *TestGwt.java.
+				Run integration tests with goal "verify" or "install".
+				See http://mojo.codehaus.org/gwt-maven-plugin/user-guide/testing.html
+				for details. -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>1.0</version>
+				<version>2.5.0-rc2</version>
 				<executions>
 					<execution>
 						<goals>
@@ -117,8 +111,10 @@
 				</executions>
 				<configuration>
 					<timeOut>120</timeOut>
+					<mode>htmlunit</mode>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	<inceptionYear>2012</inceptionYear>
 </project>
