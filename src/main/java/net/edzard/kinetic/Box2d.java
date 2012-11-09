@@ -41,6 +41,18 @@ public class Box2d {
 		this.bottom = bottom;
 	}
 	
+	/**
+	 * Creates a box given by its position and size.
+	 * @param position
+	 * @param size Size as width and height. 
+	 */
+	public Box2d(Vector2d position, Vector2d size) {
+		this.left = position.x;
+		this.top = position.y;
+		this.right = left + size.x;
+		this.bottom = top + size.y;
+	}
+	
 	public final double getWidth() {
 		return this.right - this.left;
 	}
