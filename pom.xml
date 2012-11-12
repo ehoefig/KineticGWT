@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.edzard</groupId>
 	<artifactId>kineticgwt</artifactId>
-	<version>0.9.1</version>
+	<version>0.9.2-SNAPSHOT</version>
 	<name>KineticGWT</name>
 	<description>A GWT wrapper for kinetic.js</description>
 	<url>https://github.com/ehoefig/KineticGWT</url>
