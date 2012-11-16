@@ -1,7 +1,6 @@
 History =======
 
-0.9.2 Deprecated Event. Introduced new EventType class to capture event types. Changed 
-event handling interface.
+0.9.2 Deprecated Event. Introduced new EventType class to capture event types. Changed event handling interface.
 
 0.9.1 First version for Sonatype OSS
 
