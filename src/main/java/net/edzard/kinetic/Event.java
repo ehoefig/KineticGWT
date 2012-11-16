@@ -4,6 +4,7 @@ package net.edzard.kinetic;
  * Used to communicate input events.
  * @author Ed
  */
+@Deprecated
 public class Event {
 
 	/**

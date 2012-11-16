@@ -27,10 +27,9 @@ public abstract class Node extends JavaScriptObject {
 		/**
 		 * Handles an event.
 		 * Called by Kinetic.
-		 * @param evt The event received
 		 * @return True, if the event should be processed further by bubbling up in the hierarchy. False, if bubbling should stop. 
 		 */
-		public boolean handle(Event evt);
+		public boolean handle();
 	}
 	
 	/**
@@ -436,7 +435,7 @@ public abstract class Node extends JavaScriptObject {
 	 * @param type A single event type to listen for.
 	 * @param handler The handler.
 	 */
-	public final void addEventListener(Event.Type type, EventListener handler) {
+	public final void addEventListener(EventType type, EventListener handler) {
 		addEventListener(Arrays.asList(type), handler);
 	}
 	
@@ -446,9 +445,9 @@ public abstract class Node extends JavaScriptObject {
 	 * @param eventTypes The event types
 	 * @return A string of the event types
 	 */
-	private final static String createEventTypeString(List<Event.Type> eventTypes) {
+	private final static String createEventTypeString(List<EventType> eventTypes) {
 		final StringBuffer sb = new StringBuffer();
-		for (Event.Type type: eventTypes) {
+		for (EventType type: eventTypes) {
 			sb.append(type.toString().toLowerCase()).append(" ");
 		}
 		return sb.toString().trim();
@@ -465,7 +464,7 @@ public abstract class Node extends JavaScriptObject {
 	//             a mismatch between event types
 	//             Touch also needs to be handled differently if evt should be used.
 	//       quick fix: ignore evt object
-	public final native void addEventListener(List<Event.Type> eventTypes, EventListener handler) /*-{	
+	public final native void addEventListener(List<EventType> eventTypes, EventListener handler) /*-{	
 		this.on(@net.edzard.kinetic.Node::createEventTypeString(Ljava/util/List;)(eventTypes), function(evt) {
 //			if (evt != null) {
 //				console.log(evt.type);
@@ -479,7 +478,7 @@ public abstract class Node extends JavaScriptObject {
 //				var bubble = handler.@net.edzard.kinetic.Node.EventListener::handle(Lnet/edzard/kinetic/Event;)(javaEvt);
 //				evt.cancelBubble = !bubble;
 //			} else {
-				handler.@net.edzard.kinetic.Node.EventListener::handle(Lnet/edzard/kinetic/Event;)(null);
+				handler.@net.edzard.kinetic.Node.EventListener::handle()();
 //			}
 		});
 	}-*/;
@@ -488,17 +487,17 @@ public abstract class Node extends JavaScriptObject {
 	 * Remove an event listener from the node.
 	 * @param type The event Type to stop listening to
 	 */
-	public final void removeEventListener(Event.Type type) {
+	public final void removeEventListener(EventType type) {
 		removeEventListener(Arrays.asList(type));
 	}
 	
 
 	/**
 	 * Remove an event listener from the node.
-	 * @param eventTypes A numebr of event types to stop listening to
+	 * @param eventTypes A number of event types to stop listening to
 	 */
 	// Might be buggy in Kineticjs 	
-	public final native void removeEventListener(List<Event.Type> eventTypes) /*-{
+	public final native void removeEventListener(List<EventType> eventTypes) /*-{
 		this.off(@net.edzard.kinetic.Node::createEventTypeString(Ljava/util/List;)(eventTypes));
 	}-*/;
 	
@@ -507,7 +506,7 @@ public abstract class Node extends JavaScriptObject {
 	 * This will trigger the appropriate listeners with empty event objects.
 	 * @param type The event type to simulate
 	 */
-	public final native void simulate(Event.Type type) /*-{
+	public final native void simulate(EventType type) /*-{
 		this.simulate(type.@net.edzard.kinetic.Event.Type::toString()().toLowerCase());
 	}-*/;
 	

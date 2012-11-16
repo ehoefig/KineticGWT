@@ -1,7 +1,6 @@
 package net.edzard.kinetic;
 
 import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * A layer object.
