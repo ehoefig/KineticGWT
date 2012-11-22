@@ -586,11 +586,11 @@ public class Kinetic {
 	
 	/**
 	 * Create an Animation.
-	 * @param context The context node (a layer)
+	 * @param context The context layer (animation takes place on this layer)
 	 * @param fct A custom drawing function
 	 * @return An object that can be used to control the animation
 	 */
-	public static native Animation createAnimation(Node context, Drawable fct) /*-{
+	public static native Animation createAnimation(Layer context, Drawable fct) /*-{
 	    return new $wnd.Kinetic.Animation({
 	     func: function(frame) {
             fct.@net.edzard.kinetic.Drawable::draw(Lnet/edzard/kinetic/Frame;)(@net.edzard.kinetic.Frame::new(DDD)(frame.lastTime, frame.time, frame.timeDiff));
