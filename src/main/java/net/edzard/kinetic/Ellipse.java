@@ -22,7 +22,7 @@ public class Ellipse extends Shape {
 	 * @param radius The new radius value (x and y component)
 	 */
 	public final native void setRadius(Vector2d radius) /*-{
-		this.setRadius([radii.@net.edzard.kinetic.Vector2d::x, radii.@net.edzard.kinetic.Vector2d::y]);
+		this.setRadius([radius.@net.edzard.kinetic.Vector2d::x, radius.@net.edzard.kinetic.Vector2d::y]);
 	}-*/;
 	
 	/**
