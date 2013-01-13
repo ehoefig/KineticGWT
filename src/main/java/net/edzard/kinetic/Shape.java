@@ -298,11 +298,13 @@ public abstract class Shape extends Node {
 	 * @param point The coordinate to check
 	 * @return True, if within the shape
 	 */
-	final native boolean intersects(Vector2d point) /*-{
-		return this.intersects({
-			x: point.@net.edzard.kinetic.Vector2d::x,
-            y: point.@net.edzard.kinetic.Vector2d::y
-          });
+	// Fix by asmiov6 (issue #16):
+	// I needed the intersects method so I made it public. Than it failed because kineticjs handled the parameter as an array and did not find the x and y. So I changed the parameter to an array, now it works allright.
+	public final native boolean intersects(Vector2d point) /*-{
+	    return this.intersects([
+	        point.@net.edzard.kinetic.Vector2d::x,
+	        point.@net.edzard.kinetic.Vector2d::y
+	    ]);
 	}-*/;
 	
 	/**
