@@ -161,7 +161,8 @@ public class Colour implements FillStyle {
 	private int blueComponent;
 	
 	/** The separate alpha component */
-	private int alphaComponent;
+	// Changed this one to alpha (issue #15 - raised by madgenius)
+	private float alphaComponent;
 	
 	/**
 	 * Retrieve the red component.
@@ -215,7 +216,7 @@ public class Colour implements FillStyle {
 	 * Retrieve the alpha component.
 	 * @return The alpha value
 	 */
-	public int getAlpha() {
+	public float getAlpha() {
 		return alphaComponent;
 	}
 
@@ -223,16 +224,16 @@ public class Colour implements FillStyle {
 	 * Set the alpha component.
 	 * @param alpha The new value
 	 */
-	public void setAlpha(int alpha) {
+	public void setAlpha(float alpha) {
 		this.alphaComponent = alpha;
 	}
 	
 	/**
 	 * Retrieve a colour with an alpha value.
-	 * @param alpha Defines the transparency (0 is transparent and 255 is opaque)
+	 * @param alpha Defines the transparency (0.0 is completely transparent and 1.0 is opaque)
 	 * @return a translucent colour
 	 */
-	public Colour alpha(int alpha) {
+	public Colour alpha(float alpha) {
 		return new Colour(this.redComponent, this.greenComponent, this.blueComponent, alpha);
 	}
 	
@@ -258,9 +259,9 @@ public class Colour implements FillStyle {
 	 * @param red Red component (0..255)
 	 * @param green Green component (0..255)
 	 * @param blue Blue component (0..255)
-	 * @param alpha Alpha component (0..255)
+	 * @param alpha Alpha component (0.0 .. 1.0)
 	 */
-	public Colour(int red, int green, int blue, int alpha) {
+	public Colour(int red, int green, int blue, float alpha) {
 		this.redComponent = red;
 		this.greenComponent = green;
 		this.blueComponent = blue;
@@ -268,12 +269,12 @@ public class Colour implements FillStyle {
 		if (red > 255) this.redComponent = 255; else if (red < 0) this.redComponent = 0;
 		if (green > 255) this.greenComponent = 255; else if (green < 0) this.greenComponent = 0;
 		if (blue > 255) this.blueComponent = 255; else if (blue < 0) this.blueComponent = 0;	
-		if (alpha > 255) this.alphaComponent = 255; else if (alpha < 0) this.alphaComponent = 0;	
+		if (alpha > 1.0f) this.alphaComponent = 1.0f; else if (alpha < 0.0f) this.alphaComponent = 0.0f;	
 	}
 
 	/**
 	 * Parametrized Ctor from a single webcolour string.
-	 * @param webColour A colour string (e.g., '#FF0000')
+	 * @param webColour A colour string (e.g., '#FF0000') or an rgba string, for example 'rgba(255, 0, 0, 0.5)'
 	 */
 	public Colour(final String webColour) {
 		
@@ -311,9 +312,10 @@ public class Colour implements FillStyle {
 			oldPos = pos;
 			
 			pos = webColour.indexOf(")", pos+1);
-			alphaComponent = Integer.parseInt(webColour.substring(oldPos+1, pos));
-			if (alphaComponent > 255) alphaComponent = 255; else if (alphaComponent < 0) alphaComponent = 0;
+			alphaComponent = Float.parseFloat(webColour.substring(oldPos+1, pos));
+			if (alphaComponent > 1.0f) alphaComponent = 1.0f; else if (alphaComponent < 0.0f) alphaComponent = 0.0f;
 			oldPos = pos;
+			
 		} // else {
 //			
 //			// This is a colour name
