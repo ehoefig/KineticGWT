@@ -20,6 +20,7 @@ public class GwtTestSuite extends TestCase {
 		suite.addTestSuite(EllipseTestGwt.class);
 //		suite.addTestSuite(TextTestGwt.class);
 //		suite.addTestSuite(ShapeTestGwt.class);
+		suite.addTestSuite(GroupTestGwt.class);
 		return suite;
 	}
 	
