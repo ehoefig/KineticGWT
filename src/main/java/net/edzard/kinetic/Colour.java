@@ -161,7 +161,7 @@ public class Colour implements FillStyle {
 	private int blueComponent;
 	
 	/** The separate alpha component */
-	// Changed this one to alpha (issue #15 - raised by madgenius)
+	// Changed this one to float (issue #15 - raised by madgenius)
 	private float alphaComponent;
 	
 	/**
