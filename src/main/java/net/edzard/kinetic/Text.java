@@ -211,7 +211,7 @@ public class Text extends Shape {
 	 * @param padding A padding size
 	 */
 	public final native void setPadding(double padding) /*-{
-		this.setPadding(amount);
+		this.setPadding(padding);
 	}-*/;
 	
 	/**

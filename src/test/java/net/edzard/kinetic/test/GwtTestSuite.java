@@ -18,6 +18,7 @@ public class GwtTestSuite extends TestCase {
 		suite.addTestSuite(NodeTestGwt.class);
 		suite.addTestSuite(StageTestGwt.class);
 		suite.addTestSuite(EllipseTestGwt.class);
+//		suite.addTestSuite(TextTestGwt.class);
 		return suite;
 	}
 	
