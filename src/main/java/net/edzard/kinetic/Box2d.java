@@ -60,6 +60,14 @@ public class Box2d {
 	public final double getHeight() {
 		return this.bottom - this.top;
 	}
+	
+	public final Vector2d getSize() {
+	    return new Vector2d(this.getWidth(), this.getHeight());
+	}
+	
+	public final Vector2d getPosition() {
+	    return new Vector2d(this.left, this.top);
+	}
 
 	/**
 	 * Check if a point is within the bounds of the box.
