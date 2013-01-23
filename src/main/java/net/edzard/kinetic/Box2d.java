@@ -1,13 +1,17 @@
 package net.edzard.kinetic;
 
+import java.io.Serializable;
+
 /**
  * A data quadruple.
  * Used for, e.g. rectangles or bounding boxes.
  * @author Ed
  */
-public class Box2d {
+public class Box2d implements Serializable {
 
-	/** The left side value */
+    private static final long serialVersionUID = 1L;
+
+    /** The left side value */
 	public double left;
 	
 	/** The top side value */

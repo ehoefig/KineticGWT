@@ -1,5 +1,7 @@
 package net.edzard.kinetic;
 
+import java.io.Serializable;
+
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
@@ -10,9 +12,11 @@ import com.google.gwt.json.client.JSONValue;
  * Used for positions and sizes (horizontal and vertical extents).
  * @author Ed
  */
-public class Vector2d {
+public class Vector2d implements Serializable {
 
-	/** Unit vector in direction of x axis */
+    private static final long serialVersionUID = 1L;
+
+    /** Unit vector in direction of x axis */
 	public static final Vector2d xUnit = new Vector2d(1,0);
 	
 	/** Unit vector in direction of y axis */

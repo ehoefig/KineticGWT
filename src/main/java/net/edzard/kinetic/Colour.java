@@ -1,13 +1,17 @@
 package net.edzard.kinetic;
 
+import java.io.Serializable;
+
 /**
  * A RGBA colour value.
  * Used for defining all sorts of colours using red, green, blue and alpha (opacity) components.
  * @author Ed
  */
-public class Colour implements FillStyle {
+public class Colour implements FillStyle, Serializable {
 	
-	public static final Colour aliceblue 		= new Colour(240,248,255);
+    private static final long serialVersionUID = 1L;
+    
+    public static final Colour aliceblue 		= new Colour(240,248,255);
 	public static final Colour antiquewhite		= new Colour(250,235,215);
 	public static final Colour aqua    			= new Colour(  0,255,255);
 	public static final Colour aquamarine		= new Colour(127,255,212);
