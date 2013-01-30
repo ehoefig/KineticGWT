@@ -9,14 +9,9 @@ public class Rectangle extends Shape {
 	/** Protected default Ctor keeps GWT happy */ 
 	protected Rectangle() {}
 	
-	public final native Box2d getSize() /*-{
-		box = @net.edzard.kinetic.Box2d::new()();
-		box.@net.edzard.kinetic.Box2d::left = this.getX();
-		box.@net.edzard.kinetic.Box2d::top = this.getY();
-		box.@net.edzard.kinetic.Box2d::right = this.getX() + this.getWidth();
-		box.@net.edzard.kinetic.Box2d::bottom = this.getY() + this.getHeight();
-		return box;
-	}-*/;
+	public final Vector2d getSize() {
+	    return new Vector2d(this.getWidth(), this.getHeight());
+	}
 	
 	/**
 	 * Retrieve the rectangle shape width.
