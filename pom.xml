@@ -8,6 +8,7 @@
 	<name>KineticGWT</name>
 	<description>A GWT wrapper for kinetic.js</description>
 	<url>https://github.com/ehoefig/KineticGWT</url>
+	<inceptionYear>2012</inceptionYear>
 	<licenses>
 		<license>
 			<name>BSD 3-Clause License</name>
@@ -35,7 +36,7 @@
 	</developers>
 
 	<properties>
-		<gwtVersion>2.5.0</gwtVersion>
+		<gwtVersion>2.5.1</gwtVersion>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -66,10 +67,16 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.neothemachine</groupId>
+			<artifactId>gwt-phantomjs-junit-runstyle</artifactId>
+			<version>1.0.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -79,7 +86,6 @@
 					to Sonatype (as it's already included in the parent pom) but as we _require_ 
 					sources, it is included explicitly here so it also works with local installs 
 					etc. -->
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.2.1</version>
 				<executions>
@@ -97,10 +103,11 @@
 				Run integration tests with goal "verify" or "install".
 				See http://mojo.codehaus.org/gwt-maven-plugin/user-guide/testing.html
 				for details. -->
+				
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.5.0</version>
+				<version>${gwtVersion}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -109,11 +116,10 @@
 					</execution>
 				</executions>
 				<configuration>
-					<timeOut>120</timeOut>
-					<mode>htmlunit</mode>
+					<productionMode>true</productionMode>
+					<mode>com.github.neothemachine.gwt.junit.RunStylePhantomJS</mode>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	<inceptionYear>2012</inceptionYear>
 </project>

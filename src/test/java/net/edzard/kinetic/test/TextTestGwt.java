@@ -35,10 +35,6 @@ public class TextTestGwt extends GWTTestCase {
 	
 	/**
 	 * Tests changing of padding.
-	 * ehoefig:
-	 * !!! Does not work with test system setup. Call to "createText(...)" fails.
-	 * In a normal GWT setting this is no problem.
-	 * No clue what this is about.
 	 */
 	public void testChangeOfPadding() {
 		

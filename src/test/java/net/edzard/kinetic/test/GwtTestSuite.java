@@ -11,6 +11,10 @@ import junit.framework.TestCase;
  *
  */
 public class GwtTestSuite extends TestCase {
+	
+	static {
+		System.getProperties().put("org.apache.commons.logging.simplelog.defaultlog", "trace");
+	}
 
 	public static Test suite() {
 		GWTTestSuite suite = new GWTTestSuite();
@@ -18,8 +22,8 @@ public class GwtTestSuite extends TestCase {
 		suite.addTestSuite(NodeTestGwt.class);
 		suite.addTestSuite(StageTestGwt.class);
 		suite.addTestSuite(EllipseTestGwt.class);
-//		suite.addTestSuite(TextTestGwt.class);
-//		suite.addTestSuite(ShapeTestGwt.class);
+		suite.addTestSuite(TextTestGwt.class);
+		suite.addTestSuite(ShapeTestGwt.class);
 		suite.addTestSuite(GroupTestGwt.class);
 		return suite;
 	}

@@ -61,7 +61,7 @@ public class GroupTestGwt extends GWTTestCase {
 		group.add(c2);
 		
 		layer.add(group);
-		//stage.draw();	// TODO: calls to "draw()" crash the test system
+		stage.draw();
 		
 		// Check children
 		List<Node> children = group.getChildren();
