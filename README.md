@@ -1,7 +1,8 @@
+# KineticGWT [![Build Status](https://secure.travis-ci.org/neothemachine/KineticGWT.png)](http://travis-ci.org/neothemachine/KineticGWT)
+
 KineticGWT is a wrapper of Eric Drowell's excellent [kinetic.js](http://www.kineticjs.com/) library for [Google Web Toolkit](https://developers.google.com/web-toolkit/) (GWT).
 
-How to use
-==========
+## How to use
 
 1. Add the following dependencies to your pom.xml:
 
@@ -22,8 +23,7 @@ How to use
 		<inherits name="net.edzard.kinetic"/>
 		
 
-Code sample
-===========
+## Code sample
 
 		// Kinetic needs a special div in the DOM
 		Element div = DOM.createDiv();
