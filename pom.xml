@@ -119,6 +119,7 @@
 					<productionMode>true</productionMode>
 					<mode>com.github.neothemachine.gwt.junit.RunStylePhantomJS</mode>
 					<timeOut>180</timeOut>
+					<logLevel>TRACE</logLevel>
 				</configuration>
 			</plugin>
 		</plugins>
