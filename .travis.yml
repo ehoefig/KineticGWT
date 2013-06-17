@@ -7,6 +7,6 @@ env:
 
 script: "mvn verify"
 
-after_script:
+after_success:
   - python travis/addServer.py
   - mvn clean deploy -DskipTests=true --settings ~/.m2/mySettings.xml
