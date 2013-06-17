@@ -118,6 +118,7 @@
 				<configuration>
 					<productionMode>true</productionMode>
 					<mode>com.github.neothemachine.gwt.junit.RunStylePhantomJS</mode>
+					<timeOut>180</timeOut>
 				</configuration>
 			</plugin>
 		</plugins>
