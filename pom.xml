@@ -103,7 +103,8 @@
 				Run integration tests with goal "verify" or "install".
 				See http://mojo.codehaus.org/gwt-maven-plugin/user-guide/testing.html
 				for details. -->
-				
+			
+			<!-- 	
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
@@ -122,6 +123,25 @@
 					<logLevel>TRACE</logLevel>
 				</configuration>
 			</plugin>
+			-->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.13</version>
+                <configuration>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                    <useManifestOnlyJar>false</useManifestOnlyJar>
+                    <forkMode>always</forkMode>
+                    <systemProperties>
+                        <property>
+                        <name>gwt.args</name>
+                        <value>-prod -logLevel TRACE -runStyle com.github.neothemachine.gwt.junit.RunStylePhantomJS -out ${project.build.directory}/${project.build.finalName}</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>
