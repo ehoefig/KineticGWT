@@ -11,10 +11,6 @@ import junit.framework.TestCase;
  *
  */
 public class GwtTestSuite extends TestCase {
-	
-	static {
-		System.getProperties().put("org.apache.commons.logging.simplelog.defaultlog", "trace");
-	}
 
 	public static Test suite() {
 		GWTTestSuite suite = new GWTTestSuite();

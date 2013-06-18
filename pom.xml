@@ -140,6 +140,9 @@
                         <value>-prod -logLevel TRACE -runStyle com.github.neothemachine.gwt.junit.RunStylePhantomJS -out ${project.build.directory}/${project.build.finalName}</value>
                         </property>
                     </systemProperties>
+                    <includes>
+                   	  <include>**/*Suite.java</include>
+                    </includes>
                 </configuration>
             </plugin>
 		</plugins>
