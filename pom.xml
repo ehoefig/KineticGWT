@@ -47,6 +47,14 @@
 		<artifactId>oss-parent</artifactId>
 		<version>7</version>
 	</parent>
+    
+    <repositories>
+        <repository>
+            <id>sonatype-oss</id>
+            <name>Sonatype OSS</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
 
 	<dependencies>
 
@@ -74,7 +82,7 @@
 		<dependency>
 			<groupId>com.github.neothemachine</groupId>
 			<artifactId>gwt-phantomjs-junit-runstyle</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
