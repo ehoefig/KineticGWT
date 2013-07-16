@@ -1,8 +1,9 @@
-History =======
+History
+=======
 
 0.9.2 Deprecated Event. Introduced new EventType class to capture event types. Changed event handling interface.
 
-0.9.1 First version for Sonatype OSS
+0.9.1 First version for Maven Central
 
 0.9.0 Maven version by [neothemachine](https://github.com/neothemachine)
 
