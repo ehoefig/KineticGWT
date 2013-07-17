@@ -9,12 +9,12 @@ KineticGWT is a wrapper of Eric Drowell's excellent [kinetic.js](http://www.kine
 		<dependency>
 			<groupId>net.edzard</groupId>
 			<artifactId>kineticgwt</artifactId>
-			<version>0.9.1</version>
+			<version>0.9.2</version>
 		</dependency>
 		<dependency>
 			<groupId>net.edzard</groupId>
 			<artifactId>kineticgwt</artifactId>
-			<version>0.9.1</version>
+			<version>0.9.2</version>
 			<classifier>sources</classifier>
 		</dependency>
 		
