@@ -1,4 +1,4 @@
-# KineticGWT [![Build Status](https://secure.travis-ci.org/neothemachine/KineticGWT.png)](http://travis-ci.org/neothemachine/KineticGWT)
+# KineticGWT
 
 KineticGWT is a wrapper of Eric Drowell's excellent [kinetic.js](http://www.kineticjs.com/) library for [Google Web Toolkit](https://developers.google.com/web-toolkit/) (GWT).
 
