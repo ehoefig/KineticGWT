@@ -1,12 +1,3 @@
 language: java
 
-env:
-  global:
-    - SONATYPE_USERNAME=neothemachine
-    - secure: "g60oYzXlSf19xevy4p8m40ibv8ld8kDf/SOJuaTaVD+mlNS8QiwLgEk4CETT\nmK6cEtxN7rSxnBYysBsSeKO5n8gagmivK/7LtiyzUDb1/elpyKXYYHFs2VFm\nW8iJCnLBbBM7bxuFB3JMNM68GKLSHgzNVXyJ9K1iVaQkKyUQm0c="
-
 script: "mvn verify"
-
-after_success:
-  - python travis/addServer.py
-  - mvn clean deploy -DskipTests=true --settings ~/.m2/mySettings.xml
